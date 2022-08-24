@@ -1,0 +1,155 @@
+<div class="container-fluid">
+  <app-page-title
+    title="Checkout"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+  <div class="checkout-tabs">
+    <div class="row">
+      <div class="col-xl-2 col-sm-3">
+        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-pills flex-column">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <i class="bx bxs-angry d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">Créate a malware</p>
+            </a>
+            <ng-template ngbNavContent>
+              <div class="card">
+                <div class="card-body">
+                  <div class="tab-content" id="v-pills-tabContent">
+                    <div
+                      class="tab-pane fade show active"
+                      id="v-pills-shipping"
+                      role="tabpanel"
+                      aria-labelledby="v-pills-shipping-tab"
+                    >
+                      <div>
+                        <h4 class="card-title">Malware information</h4>
+                        <p class="card-title-desc">
+                          Fill all information below
+                        </p>
+                        <form
+                          [formGroup]="productForm"
+                          (ngSubmit)="validSubmit()"
+                        >
+                          <div class="row mb-4">
+                            <label
+                              for="billing-name"
+                              class="col-md-2 col-form-label"
+                              >Name</label
+                            >
+                            <div class="col-md-10">
+                              <input
+                                name="name"
+                                formControlName="name"
+                                type="text"
+                                class="form-control"
+                                id="billing-name"
+                                placeholder="Enter malware name"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="row mb-4">
+                            <label
+                              for="billing-address"
+                              class="col-md-2 col-form-label"
+                              >Description</label
+                            >
+                            <div class="col-md-10">
+                              <textarea
+                                name="description"
+                                formControlName="description"
+                                class="form-control"
+                                id="billing-address"
+                                rows="3"
+                                placeholder="Enter full description"
+                              ></textarea>
+                            </div>
+                          </div>
+                          <div class="row mb-4">
+                            <label class="col-md-2 col-form-label"
+                              >Malware type</label
+                            >
+                            <div class="col-md-10">
+                              <ng-select
+                                formControlName="type"
+                                name="type"
+                                [items]="selectValue"
+                              ></ng-select>
+                            </div>
+                          </div>
+
+                          <div class="row mb-4">
+                            <label class="col-md-2 col-form-label"
+                              >Confidence</label
+                            >
+                            <div class="col-md-10">
+                              <ng-select
+                                formControlName="confidence"
+                                [items]="stateValue"
+                              ></ng-select>
+                            </div>
+                          </div>
+                          <div class="row mb-4">
+                            <label
+                              for="billing-phone"
+                              class="col-md-2 col-form-label"
+                              >Author</label
+                            >
+                            <div class="col-md-10">
+                              <input
+                                type="text"
+                                formControlName="author"
+                                class="form-control"
+                                id="billing-phone"
+                                placeholder="Enter your Author"
+                              />
+                            </div>
+                          </div>
+                          <div class="row mb-4">
+                            <label
+                              for="billing-phone"
+                              class="col-md-2 col-form-label"
+                              >External references</label
+                            >
+                            <div class="col-md-10">
+                              <input
+                                type="text"
+                                formControlName="references"
+                                class="form-control"
+                                id="billing-phone"
+                                placeholder="Enter your External references"
+                              />
+                            </div>
+                          </div>
+                          <div class="row my-4">
+                            <!-- end col -->
+                            <div class="col-sm-6">
+                              <div class="text-sm-end">
+                                <button
+                                  type="submit"
+                                  routerLink="/ecommerce/checkout"
+                                  class="btn btn-success"
+                                >
+                                  Submit malware
+                                </button>
+                              </div>
+                            </div>
+                            <!-- end col -->
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-10">
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+</div>

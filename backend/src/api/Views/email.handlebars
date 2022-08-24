@@ -1,0 +1,99 @@
+
+
+
+(16 sloc)  378 Bytes
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+   <style>.wrapper {
+  background-color: #fff;
+  border-radius: 4px;
+  max-width: 550px;
+  width: 100%;
+  margin: 100px 0;
+  padding: 30px 50px;
+  box-sizing: border-box;
+}
+
+.wrapper-td {
+  padding: 0 10px;
+}
+
+.logo-wrap {
+  text-align: center;
+  padding: 16px 0;
+  margin-bottom: 80px;
+}
+
+.text-body {
+  line-height: 25px;
+}
+
+.text-wrap {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.text-welcome {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #F05B6B;
+}
+
+.activation-link {
+  display: inline-block;
+  padding: 16px 50px;
+  border-radius: 50px;
+  background-color: #FD794C;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  margin: 50px 0 60px;
+}
+
+.link-copy {
+  opacity: .6;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+</style>
+
+  </head>
+  <body>
+     
+<table width="100%" style="background-color:#eee" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" class="wrapper-td">
+      <div class="wrapper">
+        <div class="logo-wrap">
+          <img width="70px"
+            src="https://kandle-api.com/users/kandle.png"
+            alt="logo">
+        </div>
+        <div class="text-wrap">
+          <div class="text-welcome">Welcome,</div>
+          <p class="text-body">Thanks for applying to Kandle.
+            <br>
+           To get started, we kindly ask you to confirm your email address by clicking the link below: 
+</p>
+          <a href="{{url}}" style="color: white;" class="activation-link">Verifier votre email</a>
+          <div class="link-copy">
+            <div>You can open your application from here .</div>
+            <a href="http://kandle"> kandle application</a>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+  </body>
+</html>
