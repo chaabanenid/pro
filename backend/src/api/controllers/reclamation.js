@@ -4,7 +4,7 @@ const axios = require("axios");
 const url = "https://demo.opencti.io/graphql";
 const header = {
   headers: {
-    Authorization: `Bearer ${"c8f823c2-b99c-4854-9527-6fe512c68c05"}`,
+    Authorization: `Bearer ${"0f16ed7b-66d6-4ddb-9a2e-77a0622e9efc"}`,
   },
 };
 const reclamationCtrl = {

@@ -53,7 +53,7 @@ export const MENUADMIN: MenuItem[] = [
 
             {
                 id: 19,
-                label: 'List reclamation',
+                label: 'Complaint list',
                 link: '/ecommerce/shops',
                 parentId: 12
             },
