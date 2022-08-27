@@ -148,7 +148,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     console.log(this.role)
     if (this.role == "admin"){
       this.menuItems = MENUADMIN;
-      console.log("okok",this.role)
+
     }
     else
     this.menuItems = MENU;

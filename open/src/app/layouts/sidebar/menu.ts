@@ -79,30 +79,30 @@ export const MENU: MenuItem[] = [
     label: "MAlware reports",
     icon: "bx-store",
     subItems: [
-      // {
-      //   id: 13,
-      //   label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTS",
-      //   link: "/ecommerce/products",
-      //   parentId: 12,
-      // },
-      // {
-      //   id: 14,
-      //   label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTDETAIL",
-      //   link: "/ecommerce/product-detail/1",
-      //   parentId: 12,
-      // },
-      // {
-      //   id: 15,
-      //   label: "MENUITEMS.ECOMMERCE.LIST.ORDERS",
-      //   link: "/ecommerce/orders",
-      //   parentId: 12,
-      // },
-      // {
-      //   id: 16,
-      //   label: "MENUITEMS.ECOMMERCE.LIST.CUSTOMERS",
-      //   link: "/ecommerce/customers",
-      //   parentId: 12,
-      // },
+      {
+        id: 13,
+        label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTS",
+        link: "/ecommerce/products",
+        parentId: 12,
+      },
+      {
+        id: 14,
+        label: "MENUITEMS.ECOMMERCE.LIST.PRODUCTDETAIL",
+        link: "/ecommerce/product-detail/1",
+        parentId: 12,
+      },
+      {
+        id: 15,
+        label: "MENUITEMS.ECOMMERCE.LIST.ORDERS",
+        link: "/ecommerce/orders",
+        parentId: 12,
+      },
+      {
+        id: 16,
+        label: "MENUITEMS.ECOMMERCE.LIST.CUSTOMERS",
+        link: "/ecommerce/customers",
+        parentId: 12,
+      },
       // {
       //   id: 17,
       //   label: "MENUITEMS.ECOMMERCE.LIST.CART",
@@ -751,38 +751,38 @@ export const MENU: MenuItem[] = [
   //         }
   //     ]
   // },
-  // {
-  //     id: 118,
-  //     label: 'MENUITEMS.ICONS.TEXT',
-  //     icon: 'bx-aperture',
-  //     subItems: [
-  //         {
-  //             id: 119,
-  //             label: 'MENUITEMS.ICONS.LIST.BOXICONS',
-  //             link: '/icons/boxicons',
-  //             parentId: 118
-  //         },
-  //         {
-  //             id: 120,
-  //             label: 'MENUITEMS.ICONS.LIST.MATERIALDESIGN',
-  //             link: '/icons/materialdesign',
-  //             parentId: 118
-  //         },
-  //         {
-  //             id: 121,
-  //             label: 'MENUITEMS.ICONS.LIST.DRIPICONS',
-  //             link: '/icons/dripicons',
-  //             parentId: 118
-  //         },
-  //         {
-  //             id: 122,
-  //             label: 'MENUITEMS.ICONS.LIST.FONTAWESOME',
-  //             link: '/icons/fontawesome',
-  //             parentId: 118
-  //         },
-  //     ]
-  // },
-  // {
+  {
+    id: 118,
+    label: 'MENUITEMS.ICONS.TEXT',
+    icon: 'bx-aperture',
+    subItems: [
+      {
+        id: 119,
+        label: 'MENUITEMS.ICONS.LIST.BOXICONS',
+        link: '/icons/boxicons',
+        parentId: 118
+      },
+      {
+        id: 120,
+        label: 'MENUITEMS.ICONS.LIST.MATERIALDESIGN',
+        link: '/icons/materialdesign',
+        parentId: 118
+      },
+      {
+        id: 121,
+        label: 'MENUITEMS.ICONS.LIST.DRIPICONS',
+        link: '/icons/dripicons',
+        parentId: 118
+      },
+      {
+        id: 122,
+        label: 'MENUITEMS.ICONS.LIST.FONTAWESOME',
+        link: '/icons/fontawesome',
+        parentId: 118
+      },
+    ]
+  },
+  //{
   //     id: 123,
   //     label: 'MENUITEMS.MAPS.TEXT',
   //     icon: 'bx-map',

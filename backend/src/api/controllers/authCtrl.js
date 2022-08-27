@@ -43,11 +43,7 @@ const authCtrl = {
         });
       }
       const passwordHash = await bcrypt.hash(password, 12);
-      const newUser = new Users({
-        email,
-        password: passwordHash,
-        phoneVerified: false,
-      });
+      const newUser = new Users(req.body);
       const access_token = generateToken.createAccessToken({ id: newUser._id });
       const refresh_token = generateToken.createRefreshToken({
         id: newUser._id,

@@ -69,6 +69,10 @@ const userSchema = new Schema(
       type: String,
       default: false,
     },
+    companyName: {
+      type: String,
+      default: false,
+    },
 
     birthDate: {
       type: String,

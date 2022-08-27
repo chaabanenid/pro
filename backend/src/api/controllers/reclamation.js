@@ -19,6 +19,19 @@ const reclamationCtrl = {
       next(err);
     }
   },
+  getReclamationsById: async (req, res, next) => {
+    try {
+      const rec = await Reclamation.find({
+        userId: req.params.id,
+      });
+      res.status(200).json({
+        success: true,
+        rec,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
 
   addReclamation: async (req, res, next) => {
     try {
@@ -31,6 +44,36 @@ const reclamationCtrl = {
         message: "reclamation added",
         reclamation,
       });
+    } catch (err) {
+      next(err);
+    }
+  },
+  deleteReclamation: async (req, res, next) => {
+    try {
+      const rec = await Reclamation.findById(req.params.id);
+      rec.remove();
+      return res.status(200).json({
+        success: true,
+        message: "reclamation délétéd",
+        rec,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  updateReclamation: async (req, res, next) => {
+    query = req.body;
+    try {
+      rec = await Reclamation.findByIdAndUpdate(req.params.id, query, {
+        new: true,
+      });
+      if (rec)
+        return res.status(200).json({
+          success: true,
+          message: "reclamation updatéd",
+          rec,
+        });
     } catch (err) {
       next(err);
     }
@@ -90,10 +133,7 @@ const reclamationCtrl = {
     return axios
       .post(url, body, header)
       .then((response) => {
-        console.log("response", response.data);
-
         return res.status(200).json(response.data);
-       
       })
       .catch((error) => {
         console.log(error);
@@ -218,7 +258,5 @@ const reclamationCtrl = {
         console.log(error);
       });
   },
-
-
 };
 module.exports = reclamationCtrl;

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +29,7 @@ export class CustomersComponent implements OnInit {
   // page
   currentpage: number;
 
-  constructor(private modalService: NgbModal, private formBuilder: FormBuilder) { }
+  constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Customers', active: true }];
@@ -53,7 +54,12 @@ export class CustomersComponent implements OnInit {
    * Customers data fetches
    */
   private _fetchData() {
-    this.customersData = customersData;
+    this.http
+      .get<any>(`http://localhost:8080/api/user/all`)
+      .subscribe((data) => {
+        console.log(data.user)
+        this.customersData = data.user
+      });
   }
   get form() {
     return this.formData.controls;
@@ -70,11 +76,11 @@ export class CustomersComponent implements OnInit {
   saveCustomer() {
     const currentDate = new Date();
     if (this.formData.valid) {
-     const username = this.formData.get('username').value;
-     const email = this.formData.get('email').value;
-     const phone = this.formData.get('phone').value;
-     const address = this.formData.get('address').value;
-     const balance = this.formData.get('balance').value;
+      const username = this.formData.get('username').value;
+      const email = this.formData.get('email').value;
+      const phone = this.formData.get('phone').value;
+      const address = this.formData.get('address').value;
+      const balance = this.formData.get('balance').value;
 
       this.customersData.push({
         id: this.customersData.length + 1,
@@ -84,7 +90,7 @@ export class CustomersComponent implements OnInit {
         address,
         balance,
         rating: '4.3',
-        date: currentDate + ':' 
+        date: currentDate + ':'
       })
       this.modalService.dismissAll()
     }

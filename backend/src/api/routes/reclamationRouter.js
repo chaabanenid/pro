@@ -2,6 +2,9 @@ const router = require("express").Router();
 const reclamationCtr = require("../controllers/reclamation");
 
 router.post("/add", reclamationCtr.addReclamation);
+router.patch("/update/:id", reclamationCtr.updateReclamation);
+router.delete("/delete/:id", reclamationCtr.deleteReclamation);
+router.get("/getById/:id", reclamationCtr.getReclamationsById);
 router.get("/getAll", reclamationCtr.getAllReclamations);
 router.get("/BarChartData", reclamationCtr.BarChartData);
 router.get("/getTotalObservable", reclamationCtr.getTotalObservable);

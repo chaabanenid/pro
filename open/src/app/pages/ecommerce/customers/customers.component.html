@@ -29,13 +29,12 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Username</th>
-                  <th>Phone / Email</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>PhoneNumber</th>
                   <th>Address</th>
-                  <th>Rating</th>
-                  <th>Wallet Balance</th>
-                  <th>Joining Date</th>
-                  <th>Action</th>
+                  <th>CompanyName</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -46,21 +45,20 @@
                       <label class="form-check-label" for="customCheck{{i}}">&nbsp;</label>
                     </div>
                   </td>
-                  <td>{{customers.username}}</td>
+                  <td>{{customers.name}}</td>
                   <td>
-                    <p class="mb-1">{{customers.phone}}</p>
-                    <p class="mb-0">{{customers.email}}</p>
+                    <p class="mb-1">{{customers.email}}</p>
+                    
                   </td>
 
-                  <td>{{customers.address}}</td>
+                  <td>{{customers.phoneNumber}}</td>
                   <td>
                     <span class="badge bg-success font-size-12">
                       <i class="mdi mdi-star me-1"></i>
-                      {{customers.rating}}
+                      {{customers.address}}
                     </span>
                   </td>
-                  <td>{{customers.balance}}</td>
-                  <td>{{customers.date | date: 'dd MMM, YYYY'}}</td>
+                  <td>{{customers.companyName}}</td>
                   <td>
                     <div class="dropdown" ngbDropdown placement="bottom-right">
                       <a href="javascript: void(0);" class="dropdown-toggle card-drop" data-toggle="dropdown"

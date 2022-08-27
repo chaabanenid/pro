@@ -16,6 +16,17 @@ const userCtrl = {
       next(err);
     }
   },
+  getAllUsers: async (req, res, next) => {
+    try {
+      const user = await Users.find().select("-password");
+      res.status(200).json({
+        success: true,
+        user,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
 
   changePassword: async (req, res, next) => {
     try {

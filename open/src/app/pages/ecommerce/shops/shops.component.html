@@ -3,11 +3,166 @@
     title="Shops"
     [breadcrumbItems]="breadCrumbItems"
   ></app-page-title>
+  <!-- Standard Modal -->
+  <ng-template #content role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">update Malware</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-hidden="true"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="saveCustomer()" [formGroup]="formData">
+        <div class="row">
+          <div class="col-12">
+            <div class="mb-3">
+              <label class="control-label">Name</label>
+              <input
+                class="form-control"
+                placeholder="Enter Name"
+                type="text"
+                name="title"
+                autocomplete="off"
+                formControlName="name"
+                [ngClass]="{ 'is-invalid': submitted && form.name.errors }"
+              />
+              <div
+                *ngIf="submitted && form.name.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="form.name.errors.required">name is required.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="control-label">Description</label>
+              <input
+                class="form-control"
+                placeholder="Enter Description"
+                type="text"
+                name="email"
+                autocomplete="off"
+                formControlName="description"
+                [ngClass]="{
+                  'is-invalid': submitted && form.description.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && form.description.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="form.description.errors.required"
+                  >description is required.</span
+                >
+                <span *ngIf="form.description.errors.pattern"
+                  >This value should be a valid description.</span
+                >
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="control-label">Malware type </label>
 
+              <div>
+                <ng-select
+                  formControlName="type"
+                  [ngClass]="{ 'is-invalid': submitted && form.type.errors }"
+                  name="type"
+                  [items]="selectValue"
+                ></ng-select>
+              </div>
+
+              <div
+                *ngIf="submitted && form.type.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="form.type.errors.required">type is required.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="control-label">Confidence</label>
+              <ng-select
+                formControlName="confidence"
+                [ngClass]="{ 'is-invalid': submitted && form.confidence.errors }"
+                name="Confidence"
+                [items]="stateValue"
+              ></ng-select>
+              <div
+                *ngIf="submitted && form.confidence.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="form.address.errors.required"
+                  >Confidence is required.</span
+                >
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="control-label">Author</label>
+              <input
+                class="form-control"
+                placeholder="Enter author"
+                type="text"
+                autocomplete="off"
+                name="author"
+                formControlName="author"
+                [ngClass]="{ 'is-invalid': submitted && form.author.errors }"
+              />
+              <div
+                *ngIf="submitted && form.author.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="form.author.errors.required"
+                  >author is required.</span
+                >
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="control-label">External references</label>
+              <input
+                class="form-control"
+                placeholder="Enter references"
+                type="text"
+                autocomplete="off"
+                name="references"
+                formControlName="references"
+                [ngClass]="{ 'is-invalid': submitted && form.references.errors }"
+              />
+              <div
+                *ngIf="submitted && form.references.errors"
+                class="invalid-feedback"
+              >
+                <span *ngIf="form.references.errors.required"
+                  >references is required.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success" id="btn-save-event">
+          update
+        </button>
+      </form>
+    </div>
+  </ng-template>
   <div class="row">
     <div class="col-xl-4 col-sm-6" *ngFor="let data of shopsData">
       <div class="card">
         <div class="row">
+          <div *ngIf="role!=='admin'">
+            <a (click)="openModal(content, data)">
+              <i
+                style="
+                  font-size: 30px !important;
+                  margin: 2%;
+                  color: green;
+                  display: flex;
+                  float: right;
+                "
+                class="bx bx-menu-alt-right"
+              ></i>
+            </a>
+          </div>
           <div class="col-xl-5">
             <div class="text-center p-4 border-end">
               <div class="avatar-sm mx-auto mb-3 mt-1">
@@ -26,6 +181,10 @@
           <div class="col-xl-7">
             <div class="p-4 text-center text-xl-start">
               <div class="row">
+                <div>
+                  <p class="text-muted mb-2 text-truncate">name</p>
+                  <h5>{{ data.name }}</h5>
+                </div>
                 <div class="col-md-6">
                   <div>
                     <p class="text-muted mb-2 text-truncate">Confidence</p>
@@ -37,6 +196,7 @@
                     <p class="text-muted mb-2 text-truncate">Type</p>
                     <h5>{{ data.type }}</h5>
                   </div>
+                  
                 </div>
               </div>
               <div class="mt-4">
@@ -44,6 +204,20 @@
                 <h5>{{ data.description }}</h5>
               </div>
             </div>
+          </div>
+          <div class="float-right">
+            <a (click)="deleteReclamation(data._id)">
+              <i
+                class="bx bxs-trash-alt d-block mt-4 mb-2"
+                style="
+                  font-size: 30px !important;
+                  margin: 2%;
+                  color: red;
+                  display: flex;
+                  float: right;
+                "
+              ></i>
+            </a>
           </div>
         </div>
       </div>
