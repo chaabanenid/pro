@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Customers } from './customers.model';
-
+import Swal from 'sweetalert2';
 import { customersData } from './data';
 
 @Component({
@@ -96,4 +96,26 @@ export class CustomersComponent implements OnInit {
     }
     this.submitted = true
   }
+  deleteUser(id){
+
+
+
+    this.http
+    .delete<any>(`http://localhost:8080/api/user/delete-account/`+id, {
+    })
+    .subscribe((data) => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'user has been deleted',
+        showConfirmButton: false,
+        timer: 1000,
+      });
+
+  this._fetchData()
+  })
+
+
+
+}
 }

@@ -105,8 +105,6 @@ export class CheckoutComponent implements OnInit {
         if(data.success){
           this.position()
         }
-        
-        console.log("réturn data",data);
        
         return data;
       },
