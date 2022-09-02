@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
+import Swal from "sweetalert2";
 @Component({
   selector: "app-checkout",
   templateUrl: "./checkout.component.html",
@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit {
   selectValue = [];
   stateValue = [];
   submit;
+  displayToast=false;
 
   constructor(public formBuilder: FormBuilder, private http: HttpClient) {}
   get form() {
@@ -37,6 +38,7 @@ export class CheckoutComponent implements OnInit {
       references: ["", [Validators.required]],
     });
     this.submit = false;
+    
 
     this.breadCrumbItems = [
       { label: "Ecommerce" },
@@ -70,6 +72,24 @@ export class CheckoutComponent implements OnInit {
 
     this.stateValue = ["None", "Low", "Moderate", "Good", "Strong"];
   }
+  position() {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Event has been saved',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }
+  positionError() {
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Event Error',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }
 
   validSubmit() {
     this.submit = true;
@@ -82,8 +102,17 @@ export class CheckoutComponent implements OnInit {
         userId: userId._id,
       })
       .subscribe((data) => {
-        console.log("réturn");
+        if(data.success){
+          this.position()
+        }
+        
+        console.log("réturn data",data);
+       
         return data;
-      });
+      },
+      (err) => this.positionError(),
+      )
+      
+      ;
   }
 }

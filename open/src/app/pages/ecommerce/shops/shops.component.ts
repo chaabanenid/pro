@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
+import Swal from "sweetalert2";
 import { shopsData } from "./data";
 
 import { Shops } from "./shops.model";
@@ -80,6 +81,24 @@ export class ShopsComponent implements OnInit {
   get form() {
     return this.formData.controls;
   }
+  position() {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Event has been removed',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }
+  positionError() {
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Event Error',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }
 
 
   openModal(content: any, data) {
@@ -103,26 +122,32 @@ export class ShopsComponent implements OnInit {
       this.http
         .get<any>(`http://localhost:8080/api/reclamation/getById/` + values._id)
         .subscribe((data) => {
-          console.log("data", data.users);
+
           this.shopsData = data.rec;
-        });
+        })
+        ;
 
     }
     else
       this.http
         .get<any>(`http://localhost:8080/api/reclamation/getAll`)
         .subscribe((data) => {
-          console.log("data", data.users);
+      
           this.shopsData = data.users;
-        });
+        })
+       
+        ;
   }
   deleteReclamation(id) {
     this.http
       .delete<any>(`http://localhost:8080/api/reclamation/delete/` + id)
       .subscribe((data) => {
-        console.log("data", data.users);
+    
        this._fetchData();
-      });
+       this.position()
+      }),
+      (error)=>this.positionError()
+      ;
 
   }
   saveCustomer() {
@@ -134,9 +159,20 @@ export class ShopsComponent implements OnInit {
           ...this.formData.value,
         })
         .subscribe((data) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'repport has been changed',
+            showConfirmButton: false,
+            timer: 1000,
+          });
+
+
           this._fetchData()
           return data;
-        });
+        }),
+        (err)=>this.positionError();
+        ;
 
 
 

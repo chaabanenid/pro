@@ -13,6 +13,7 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { NgSelectModule } from '@ng-select/ng-select';
+import {ToasterModule} from '../../shared/toast/toaster/toaster.module'
 
 import { ProductsComponent } from './products/products.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
@@ -46,7 +47,8 @@ const config: DropzoneConfigInterface = {
     WidgetModule,
     Ng5SliderModule,
     NgSelectModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    ToasterModule
   ],
   providers: [
     {

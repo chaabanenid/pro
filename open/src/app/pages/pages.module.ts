@@ -13,6 +13,7 @@ import { LightboxModule } from 'ngx-lightbox';
 
 import { WidgetModule } from '../shared/widget/widget.module';
 import { UIModule } from '../shared/ui/ui.module';
+import{ToasterModule} from '../shared/toast/toaster/toaster.module'
 
 import { PagesRoutingModule } from './pages-routing.module';
 
@@ -79,7 +80,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgbTooltipModule,
     NgbCollapseModule,
     SimplebarAngularModule,
-    LightboxModule
+    LightboxModule,
+    ToasterModule
   ],
 })
 export class PagesModule { }
