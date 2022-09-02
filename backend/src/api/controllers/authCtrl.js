@@ -43,17 +43,12 @@ const authCtrl = {
         });
       }
       const passwordHash = await bcrypt.hash(password, 12);
-      const newUser = new Users(req.body);
+      const newUser = new Users({...req.body,password:passwordHash,});
       const access_token = generateToken.createAccessToken({ id: newUser._id });
       const refresh_token = generateToken.createRefreshToken({
         id: newUser._id,
       });
       const user = await newUser.save();
-
-      const url = `${process.env.CLIENT_URL}api/auth/${user._id}/verifyEmail/${access_token}`;
-
-      await sendEmail(user.email, "Verify Email", url, next);
-
       return res.status(201).json({
         success: true,
         message: "Registered Successfully and an email sent to your account!",
