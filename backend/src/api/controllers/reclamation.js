@@ -4,7 +4,7 @@ const axios = require("axios");
 const url = "https://demo.opencti.io/graphql";
 const header = {
   headers: {
-    Authorization: `Bearer ${"112b77b3-1f3d-4404-9b2a-56ebc73d41c1"}`,
+    Authorization: `Bearer ${"f26810b3-52a0-4b01-8b0c-c79bc10b736f"}`,
   },
 };
 const reclamationCtrl = {
@@ -35,6 +35,16 @@ const reclamationCtrl = {
 
   addReclamation: async (req, res, next) => {
     try {
+      const tab=Object.values(req.body);
+      tab.forEach(element => {
+        if(!emptyInput(element))
+        return res.status(400).json({
+          success: false,
+          message: "No data",
+        });
+        
+      });
+
       const newRec = new Reclamation({
         ...req.body,
       });
@@ -115,7 +125,7 @@ const reclamationCtrl = {
         return res.status(200).json(response.data);
       })
       .catch((error) => {
-        console.log(error);
+      
       });
   },
 
@@ -259,4 +269,9 @@ const reclamationCtrl = {
       });
   },
 };
+function emptyInput(input){
+  if(input.length==0)
+  return false;
+  return true
+}
 module.exports = reclamationCtrl;

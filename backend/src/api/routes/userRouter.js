@@ -19,7 +19,7 @@ router.put(
   // }
 );
 router.post("/change-password", auth, userCtrl.changePassword);
-router.delete("/delete-account", auth, userCtrl.deleteAccount);
+router.delete("/delete-account/:id", userCtrl.deleteAccount);
 
 //router.post("activate-email", auth, userCtrl.activateEmail);
 module.exports = router;

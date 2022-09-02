@@ -67,23 +67,15 @@ const userCtrl = {
 
   deleteAccount: async (req, res, next) => {
     try {
-      const { password } = req.body;
-
-      const user = await Users.findById(req.user._id);
-
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({
-          success: false,
-          message: "Incorrect password !",
-        });
-      } else {
+      const user = await Users.findById(req.params.id);
+     
         user.remove();
+
         res.status(200).json({
           success: true,
           message: "Account deleted successfully !",
         });
-      }
+      
     } catch (err) {
       next(err);
     }
