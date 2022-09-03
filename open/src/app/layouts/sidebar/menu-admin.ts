@@ -47,14 +47,14 @@ export const MENUADMIN: MenuItem[] = [
             {
                 id: 16,
                 label: 'Users',
-                link: '/ecommerce/customers',
+                link: '/report/customers',
                 parentId: 12
             },
 
             {
                 id: 19,
                 label: 'Complaint list',
-                link: '/ecommerce/shops',
+                link: '/report/list',
                 parentId: 12
             },
 

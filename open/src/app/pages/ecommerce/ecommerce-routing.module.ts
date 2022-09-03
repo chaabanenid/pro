@@ -20,11 +20,11 @@ const routes: Routes = [
         component: ProductdetailComponent
     },
     {
-        path: 'shops',
+        path: 'list',
         component: ShopsComponent
     },
     {
-        path: 'checkout',
+        path: 'add',
         component: CheckoutComponent
     },
     {
