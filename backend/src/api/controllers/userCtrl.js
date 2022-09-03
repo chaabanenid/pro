@@ -83,7 +83,6 @@ const userCtrl = {
 
   updateProfile: async (req, res, next) => {
     const query = req.body;
-    let country;
     const updates = Object.keys(query);
     const isValidOperation = updates.every((update) => {
       return allowedUpdates.includes(update);
@@ -94,39 +93,8 @@ const userCtrl = {
         throw createError.BadRequest(errors.errors[0].msg);
       }
 
-      if (!isValidOperation) {
-        throw createError.BadRequest("Invalid updates!");
-      }
-      if (req.files === undefined && updates.length === 0) {
-        throw createError.BadRequest("No data inputs");
-      }
-
-      //if my quest contain file
-      if (req.files) {
-        console.log(req.files);
-        let user = await uploadImageInDB(req.files, req.user.id);
-        return res.status(200).json({
-          success: true,
-          message: "User picture Updated:",
-          user,
-        });
-      }
-
-      //if my quest does not contain file
-      else {
         //if my quest contain position
-        if (query.latitude && query.longitude) {
-          country = await geoCode.reverseGeoGetCountry(
-            query.latitude,
-            query.longitude
-          );
-          if (country == "undefined")
-            throw createError.BadRequest("invalid position");
-          query.city = country.city;
-          query.address = country.address;
-        }
-
-        user = await Users.findByIdAndUpdate(req.user.id, query, {
+        user = await Users.findByIdAndUpdate(req.params.id, query, {
           new: true,
         });
         if (!user) {
@@ -138,7 +106,7 @@ const userCtrl = {
           message: "User Updated:",
           user,
         });
-      }
+      
     } catch (error) {
       next(error);
     }
