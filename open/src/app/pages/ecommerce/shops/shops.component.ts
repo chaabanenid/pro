@@ -24,6 +24,7 @@ export class ShopsComponent implements OnInit {
   shopsData: Shops[];
   status=['Progress','Accepted','refused']
   stateValue = ["None", "Low", "Moderate", "Good", "Strong"];
+  selection;
   selectValue = [
     "adware",
     "backdoor",
@@ -48,6 +49,7 @@ export class ShopsComponent implements OnInit {
     "wiper",
     "worm",
   ];
+  
   constructor(private http: HttpClient, private modalService: NgbModal, private formBuilder: FormBuilder) { }
   formData: FormGroup;
   submitted = false;
@@ -183,36 +185,35 @@ export class ShopsComponent implements OnInit {
   }
 
 
-  updateStatus(value) {
-    if (this.formData.valid) {
-      console.log("id", this.formData.value._id)
-      let id = this.formData.value._id
+  updateStatus(id) {
       this.http
         .patch<any>(`http://localhost:8080/api/reclamation/update/` + id, {
-         status:value
+         status:this.selection
         })
         .subscribe((data) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'repport has been changed',
+            title: 'status has been changed',
             showConfirmButton: false,
             timer: 1000,
           });
-
-
-          this._fetchData()
-          return data;
+          this._fetchData();
+          this.modalService.dismissAll();
         }),
         (err)=>this.positionError();
-        ;
+        
 
 
 
-      this.modalService.dismissAll()
-    }
-    this.submitted = true
+      
+    
+
   }
-
+ 
+  changeFn(val) {
+    this.selection=val;
+    console.log("Dropdown selection:", val);
+}
 
 }

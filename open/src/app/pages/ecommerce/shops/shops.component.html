@@ -211,14 +211,25 @@
 
               <div *ngIf="role=='admin'" class="col-sm">
                 <ng-select
+                (change)="changeFn($event)"
+                
                 style="margin-top: 20px; margin-left:10px"
-                formControlName="status"
                 name="status"
+                [(ngModel)]="data.status"
                 [items]="status"
+                
               ></ng-select>
-              </div>
-              <div *ngIf="role!=='admin'" class="col-sm">
-             {{data.status}}
+            </div>
+              <div  *ngIf="role=='admin'" class="col-sm">
+              <a (click)="updateStatus(data._id)" >  <i style="font-size: 30px; margin-top: 20px;cursor: pointer; color:green" class="bx bx-check-circle"></i> 
+              </a>
+            </div>
+              
+              <div *ngIf="role!=='admin'"  style="margin-top: 20px; margin-left:10px" class="col-sm">
+                <div  [ngClass]="data.status=='refused'?'alert alert-danger': data.status=='Progress'? 'alert alert-warning' :'alert alert-success'    " class="alert alert-primary" role="alert">
+                  {{data.status}}
+                </div>
+           
               </div>
 
               <div class="col-sm">

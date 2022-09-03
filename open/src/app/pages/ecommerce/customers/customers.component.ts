@@ -130,7 +130,6 @@ export class CustomersComponent implements OnInit {
 }
 
 editClient(){
-  console.log("aaa",this.updateUserId)
   this.http
     .put<any>(`http://localhost:8080/api/user/update-profile/` + this.updateUserId, {
       ...this.formData.value,

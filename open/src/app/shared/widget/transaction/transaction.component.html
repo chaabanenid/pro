@@ -16,7 +16,7 @@
         <th class="align-middle">discription</th>
         <th class="align-middle">createdBy</th>
         <th class="align-middle">date</th>
-        <th class="align-middle">détails</th>
+       
       </tr>
     </thead>
     <tbody>
@@ -35,8 +35,10 @@
           </div>
         </td>
         <td>{{ data.entity_type }}</td>
-        <td>{{ data.name }}</td>
+        <td>{{ data.attribute_abstract }}</td>
         <td>{{ data.createdBy.name }}</td>
+      
+       
         <td>
           <span
             class="badge badge-pill badge-soft-success font-size-11"
@@ -47,16 +49,7 @@
             >{{ data.created_at }}</span
           >
         </td>
-        <td>
-          <!-- Button trigger modal -->
-          <button
-            type="button"
-            class="btn btn-primary btn-sm btn-rounded"
-            (click)="openModal(content)"
-          >
-            View Details
-          </button>
-        </td>
+     
       </tr>
     </tbody>
   </table>
