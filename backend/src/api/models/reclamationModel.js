@@ -32,6 +32,10 @@ const reclamationSchema = new Schema(
       type: String,
       required: false,
     },
+    status:{
+      type:String,
+      default:'Progress'
+    }
   },
   {
     timestamps: true,

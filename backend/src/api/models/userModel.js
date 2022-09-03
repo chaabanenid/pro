@@ -118,11 +118,11 @@ userSchema.methods.toJSON = function () {
   delete userObject.password;
   delete userObject.idSocial;
   delete userObject.profilePic;
-  delete userObject.role;
   delete userObject.gender;
   delete userObject.online;
   delete userObject.passion;
   delete userObject.latitude;
+  
   return userObject;
 };
 module.exports = mongoose.model("user", userSchema);
