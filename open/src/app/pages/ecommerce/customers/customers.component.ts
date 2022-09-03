@@ -23,6 +23,7 @@ export class CustomersComponent implements OnInit {
   formData: FormGroup;
   submitted = false;
   customersData: Customers[];
+  updateUserId:any;
 
   term: any;
 
@@ -35,11 +36,11 @@ export class CustomersComponent implements OnInit {
     this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Customers', active: true }];
 
     this.formData = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       address: ['', [Validators.required]],
-      balance: ['', [Validators.required]]
+      companyName: ['', [Validators.required]]
     });
 
     this.currentpage = 1;
@@ -69,7 +70,16 @@ export class CustomersComponent implements OnInit {
    * Open modal
    * @param content modal content
    */
-  openModal(content: any) {
+  openModal(content: any,data) {
+
+    this.formData.setValue({
+      name: data.name, phoneNumber: data.phoneNumber,
+      email: data.email,
+      address: data.address, companyName: data.companyName,
+
+    })
+
+
     this.modalService.open(content);
   }
 
@@ -118,4 +128,38 @@ export class CustomersComponent implements OnInit {
 
 
 }
+
+editClient(){
+  console.log("aaa",this.updateUserId)
+  this.http
+    .put<any>(`http://localhost:8080/api/user/update-profile/` + this.updateUserId, {
+      ...this.formData.value,
+    })
+    .subscribe((data) => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'repport has been changed',
+        showConfirmButton: false,
+        timer: 1000,
+      })
+    
+      this._fetchData()
+    
+},
+
+(err)=>{
+Swal.fire({
+  position: 'center',
+  icon: 'error',
+  title: err.error.message,
+  showConfirmButton: false,
+  timer: 1000,
+})
+}
+)
+
+
+}
+
 }

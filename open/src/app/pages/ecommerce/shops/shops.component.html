@@ -200,22 +200,47 @@
                 <p class="text-muted mb-2 text-truncate">description</p>
                 <h5>{{ data.description }}</h5>
               </div>
+
+              
+
             </div>
           </div>
           <div class="float-right">
-            <a (click)="deleteReclamation(data._id)">
-              <i
-                class="bx bxs-trash-alt d-block mt-4 mb-2"
-                style="
-                  font-size: 30px !important;
-                  margin: 2%;
-                  color: red;
-                  display: flex;
-                  float: right;
-                  cursor: pointer;
-                "
-              ></i>
-            </a>
+
+            <div class="row">
+
+              <div *ngIf="role=='admin'" class="col-sm">
+                <ng-select
+                style="margin-top: 20px; margin-left:10px"
+                formControlName="status"
+                name="status"
+                [items]="status"
+              ></ng-select>
+              </div>
+              <div *ngIf="role!=='admin'" class="col-sm">
+             {{data.status}}
+              </div>
+
+              <div class="col-sm">
+                <a (click)="deleteReclamation(data._id)">
+                  <i
+                    class="bx bxs-trash-alt d-block mt-4 mb-2"
+                    style="
+                      font-size: 30px !important;
+                     margin-right: 5%; margin-bottom: 10%;
+                      color: red;
+                    display: flex;
+                    float: right;
+                      cursor: pointer;
+                    "
+                  ></i>
+                </a>
+              </div>
+            
+          
+          </div>
+          <div class="">
+           
           </div>
         </div>
       </div>

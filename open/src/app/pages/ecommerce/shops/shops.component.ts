@@ -22,6 +22,7 @@ export class ShopsComponent implements OnInit {
   breadCrumbItems: Array<{}>;
 
   shopsData: Shops[];
+  status=['Progress','Accepted','refused']
   stateValue = ["None", "Low", "Moderate", "Good", "Strong"];
   selectValue = [
     "adware",
@@ -180,5 +181,38 @@ export class ShopsComponent implements OnInit {
     }
     this.submitted = true
   }
+
+
+  updateStatus(value) {
+    if (this.formData.valid) {
+      console.log("id", this.formData.value._id)
+      let id = this.formData.value._id
+      this.http
+        .patch<any>(`http://localhost:8080/api/reclamation/update/` + id, {
+         status:value
+        })
+        .subscribe((data) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'repport has been changed',
+            showConfirmButton: false,
+            timer: 1000,
+          });
+
+
+          this._fetchData()
+          return data;
+        }),
+        (err)=>this.positionError();
+        ;
+
+
+
+      this.modalService.dismissAll()
+    }
+    this.submitted = true
+  }
+
 
 }

@@ -14,13 +14,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-8">
-              <div class="text-sm-end">
-                <button type="button" class="btn btn-success btn-rounded mb-2 mr-2" (click)="openModal(content)">
-                  <i class="mdi mdi-plus me-1"></i> New Customers
-                </button>
-              </div>
-            </div>
+        
             <!-- end col-->
           </div>
           <div class="table-responsive">
@@ -65,7 +59,7 @@
                         <i class="mdi mdi-dots-horizontal font-size-18"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
-                        <li><a href="javascript: void(0);" class="dropdown-item"><i
+                        <li><a  (click)="openModal(content,customers); updateUserId=customers._id" href="javascript: void(0);" class="dropdown-item"><i
                               class="fas fa-pencil-alt text-success me-1"></i>
                             Edit</a></li>
                         <li><a  (click)="deleteUser(customers._id)"  href="javascript: void(0);" class="dropdown-item"><i
@@ -96,15 +90,15 @@
     <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-   <form (ngSubmit)="saveCustomer()" [formGroup]="formData">
+   <form (ngSubmit)="editClient()" [formGroup]="formData">
     <div class="row">
       <div class="col-12">
         <div class="mb-3">
-          <label class="control-label">Username</label>
-          <input class="form-control" placeholder="Enter Username" type="text" name="title" autocomplete="off" formControlName="username"
-              [ngClass]="{'is-invalid': submitted && form.username.errors}" />
-            <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
-              <span *ngIf="form.username.errors.required">Username is required.</span>
+          <label class="control-label">name</label>
+          <input class="form-control" placeholder="Enter name" type="text" name="title" autocomplete="off" formControlName="name"
+              [ngClass]="{'is-invalid': submitted && form.name.errors}" />
+            <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+              <span *ngIf="form.name.errors.required">name is required.</span>
             </div>
         </div>
         <div class="mb-3">
@@ -117,14 +111,6 @@
               </div>
         </div>
         <div class="mb-3">
-          <label class="control-label">Phone</label>
-          <input class="form-control" placeholder="Enter phone" type="text" name="phone" autocomplete="off" formControlName="phone"
-              [ngClass]="{'is-invalid': submitted && form.phone.errors}" />
-            <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
-              <span *ngIf="form.phone.errors.required">Phone is required.</span>
-            </div>
-        </div>
-        <div class="mb-3">
           <label class="control-label">Address</label>
           <input class="form-control" placeholder="Enter address" type="text" autocomplete="off" name="address" formControlName="address"
               [ngClass]="{'is-invalid': submitted && form.address.errors}" />
@@ -133,11 +119,19 @@
             </div>
         </div>
         <div class="mb-3">
-          <label class="control-label">Balance</label>
-          <input class="form-control" placeholder="Enter balance" type="text" autocomplete="off" name="balance" formControlName="balance"
+          <label class="control-label">phoneNumber</label>
+          <input class="form-control" placeholder="Enter phoneNumber" type="text" autocomplete="off" name="phoneNumber" formControlName="phoneNumber"
               [ngClass]="{'is-invalid': submitted && form.address.errors}" />
-            <div *ngIf="submitted && form.balance.errors" class="invalid-feedback">
-              <span *ngIf="form.balance.errors.required">balance is required.</span>
+            <div *ngIf="submitted && form.phoneNumber.errors" class="invalid-feedback">
+              <span *ngIf="form.phoneNumber.errors.required">phoneNumber is required.</span>
+            </div>
+        </div>
+        <div class="mb-3">
+          <label class="control-label">companyName</label>
+          <input class="form-control" placeholder="Enter companyName" type="text" autocomplete="off" name="companyName" formControlName="companyName"
+              [ngClass]="{'is-invalid': submitted && form.address.errors}" />
+            <div *ngIf="submitted && form.companyName.errors" class="invalid-feedback">
+              <span *ngIf="form.companyName.errors.required">companyName is required.</span>
             </div>
         </div>
       </div>
