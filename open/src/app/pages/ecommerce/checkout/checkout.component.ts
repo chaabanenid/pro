@@ -16,6 +16,7 @@ export class CheckoutComponent implements OnInit {
   breadCrumbItems: Array<{}>;
   selectValue = [];
   stateValue = [];
+  loading=false;
   submit;
   displayToast=false;
 
@@ -93,7 +94,7 @@ export class CheckoutComponent implements OnInit {
 
   validSubmit() {
     this.submit = true;
-
+    this.loading=true;
     const userId = JSON.parse(localStorage.getItem("currentUser"));
     //réquést
     this.http
@@ -103,12 +104,15 @@ export class CheckoutComponent implements OnInit {
       })
       .subscribe((data) => {
         if(data.success){
+          this.loading=false;
           this.position()
         }
        
         return data;
       },
-      (err) => this.positionError(),
+      (err) => {this.positionError()
+      this.loading=false;
+      },
       )
       
       ;

@@ -125,10 +125,10 @@
                               <div class="text-sm-end">
                                 <button
                                   type="submit"
-                                  routerLink="/ecommerce/checkout"
                                   class="btn btn-success"
                                 >
                                   Submit malware
+                                  <i *ngIf="loading" class="bx bx-loader bx-spin font-size-18 align-middle me-2"></i>
                                 </button>
                               </div>
                             </div>

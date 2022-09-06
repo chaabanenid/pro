@@ -67,10 +67,9 @@ export class ShopsComponent implements OnInit {
     this.formData = this.formBuilder.group({
       name: ["", [Validators.required,]],
       description: [
-        "",
-        [Validators.required, Validators.pattern("[a-zA-Z0-9]+")],
+        "",[Validators.required]
       ],
-      type: ["", [Validators.required, Validators.pattern("[a-zA-Z0-9]+")]],
+      type: ["", [Validators.required, ]],
       confidence: ["", [Validators.required]],
       author: ["", [Validators.required]],
       references: ["", [Validators.required]],
